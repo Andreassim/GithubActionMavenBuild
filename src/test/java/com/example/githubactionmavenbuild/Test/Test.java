@@ -1,4 +1,4 @@
-package com.example.githubactionmavenbuild;
+package com.example.githubactionmavenbuild.Test;
 
 import org.junit.jupiter.api.Assertions;
 
