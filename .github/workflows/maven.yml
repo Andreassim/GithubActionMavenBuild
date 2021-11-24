@@ -3,7 +3,7 @@ name: Java CI with Maven
 on:
   push:
     branches:
-      - develop
+      - main
   pull_request:
     branches:
       - '*'
@@ -19,5 +19,10 @@ jobs:
         with:
           java-version: '11'
           distribution: 'adopt'
+          cache: maven
       - name: Build with Maven
-        run:  mvn -batch-mode --update-snapshots verify
+        run: mvn -B clean package -Dmaven.test.skip.exec
+      - name: Unit Test
+        run: mvn '-Dtest=com.example.githubactionmavenbuild.Test.*Test*' test
+      - name: Integration Test
+        run: mvn '-Dtest=com.example.githubactionmavenbuild.IT.*Test*' test
